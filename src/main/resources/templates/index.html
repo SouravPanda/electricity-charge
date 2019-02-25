@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electicity Charge</title>
+</head>
+<body>
+<form action="#" th:action="@{/add-customer-data}" th:object="${electricityCharge}" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Name">
+    <label for="unitConsumed">Unit Consumed</label>
+    <input type="number" name="unitConsumed" id="unitConsumed" placeholder="Unit Consumed">
+    <input type="submit" value="Add Electricity Charge">
+</form>
+<div th:switch="${electricityChargeSet}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Customers</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Customer Number</th>
+                <th>Name</th>
+                <th>Unit Consumed</th>
+                <th>Bill Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="electricityCharge : ${electricityChargeSet}">
+                <td th:text="${electricityCharge.customerNumber}"></td>
+                <td th:text="${electricityCharge.name}"></td>
+                <td th:text="${electricityCharge.unitConsumed}"></td>
+                <td th:text="${electricityCharge.billAmount}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
